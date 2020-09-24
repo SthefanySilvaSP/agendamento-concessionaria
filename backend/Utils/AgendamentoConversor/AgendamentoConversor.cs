@@ -11,21 +11,12 @@ namespace backend.Utils.AgendamentoConversor
             List<Models.Response.AgendamentoResponse> resp = new List<Models.Response.AgendamentoResponse>();
 
             foreach(Models.TbAgendamento item in req)
-            {
-                string nomeFunc = db.NomeUsuario(
-                    new Models.TbLogin() { 
-                        IdLogin = item.IdFuncionarioNavigation.IdLoginNavigation.IdLogin
-                    }
-                );
-
-                Models.TbCarro carro = db.ConsultarCarro(item.IdCarro);
-                string nomeCarro = carro.NmModelo + " " + carro.DsPlaca;
-
+            {        
                 resp.Add(
                     new Models.Response.AgendamentoResponse() {
                         ID = item.IdAgendamento,
-                        Carro = nomeCarro,
-                        Funcionario = nomeFunc,
+                        Carro = item.IdCarroNavigation.NmModelo + " " + item.IdCarroNavigation.DsPlaca,
+                        Funcionario = item.IdFuncionarioNavigation.NmFuncionario,
                         Data = item.DtAgendamento,
                         Situacao = item.DsSituacao,
                         Estrelas = item.QtEstrelas,

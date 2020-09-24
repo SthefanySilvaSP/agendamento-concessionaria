@@ -47,7 +47,7 @@ namespace backend.Database
         public string NomeUsuario (Models.TbLogin login)
         {
             
-            if (string.IsNullOrEmpty(login.DsPerfil))
+            if (string.IsNullOrEmpty(login.DsPerfil) && login.IdLogin > 0)
             {
                 login = ctx.TbLogin.FirstOrDefault(x => x.IdLogin == login.IdLogin);
             }
@@ -65,8 +65,8 @@ namespace backend.Database
                 Models.TbFuncionario pessoa = ctx.TbFuncionario.ToList().FirstOrDefault(x =>
                     x.IdLogin == login.IdLogin
                 );
-
-              return pessoa.NmFuncionario;
+                
+                return pessoa.NmFuncionario;
 
             }
             else 
