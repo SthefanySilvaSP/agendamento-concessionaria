@@ -1,2 +1,0 @@
-* Arquivo necessário para commitar a pasta
-apague se já houver mais arquivos na pasta
